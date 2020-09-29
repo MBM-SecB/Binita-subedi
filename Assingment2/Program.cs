@@ -8,7 +8,7 @@ class IOAssignment
 {
     void CreateDirectory()
     {
-        string filePath = @"C:\Users\Binita Subedi\Desktop\Binita-subedi-master\Assignment2\Nepal";
+        string filePath = @"C:\Users\Binita Subedi\Desktop\Binita-subedi-master\Assingment2\Nepal";
         Directory.CreateDirectory(filePath);
 
         string subDirectory = "subfolder";
