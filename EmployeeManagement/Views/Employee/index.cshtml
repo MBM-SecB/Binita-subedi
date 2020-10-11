@@ -1,0 +1,36 @@
+@model List<Employee>
+
+  @{
+  ViewData["Title"] = "Employee Home";
+}
+
+<h1>Displaying all employees...</h1>
+
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Address</th>
+      <th scope="col">Salary</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    @for(int i = 0; i<Model.Count; i++)
+    {
+        <tr>
+          <td>@(i+1)</td>
+          <td>@Model[i].FirstName</td>
+          <td>@Model[i].Surname</td>
+          <td>@Model[i].Gender</td>
+          <td>@Model[i].Address</td>
+          <td>@Model[i].Salary</td>
+
+        </tr>
+    }
+  </tbody>
+ 
+</table>

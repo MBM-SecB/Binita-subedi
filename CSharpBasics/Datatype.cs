@@ -1,8 +1,8 @@
-public class datatype
+public class DataTypes
 {
-  public void ()
-  {
-    // Console.WriteLine("Sagar Shree");
+    public void LearnDataTypes()
+    {
+ // Console.WriteLine("Sagar Shree");
         // string x = Console.ReadLine();
         // Console.WriteLine("Hi, " + x);
 
@@ -34,5 +34,16 @@ public class datatype
 
 
 
-  }
+
+
+    }
+
+
+    (int, string) GetName(int x, float y)
+    {
+        return (23456, "hsdhsd");
+    }
+
 }
+
+    
