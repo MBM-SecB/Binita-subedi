@@ -1,25 +1,42 @@
 
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-public class Employee
+public class Person
 {
-    public string FirstName { get; set; }
-    public string Surname { get; set; }
-    public string Address { get; set; }
-    public char Gender { get; set; }
-    public double Salary { get; set; }
+    [Required(ErrorMessage="We need first name")]
+    [Display(Name ="First Name")]
+    
+    public string FirstName {get; set;}
 
-    public static List<Employee> GetEmployees()
+    [Required(ErrorMessage="We need last name")]
+    [Display(Name ="Last Name")]
+    public string Surname {get; set;}
+
+    
+    public string Address {get; set;}
+    public char Gender {get; set;} = 'M';
+    public double Salary {get; set;}
+
+    public static List<Person> GetPerson()
     {
-        // Object initializer
-        var employee1 = new Employee { FirstName = "Binita", Surname = "Subedi", Address = "Kathmandu", Salary = 10000.0 };
-        var employee2 = new Employee { FirstName = "Hari", Surname = "K.c", Address = "Bhaktapur", Salary = 10000.0 };
-        var employee3 = new Employee { FirstName = "Sushant", Surname = "Sharma", Address = "Thankot", Salary = 13000.0 };
-        var employee4 = new Employee { FirstName = "Saurav", Surname = "Bhusal", Address = "Lalitpur", Salary = 12000.0 };
-        var employee5 = new Employee { FirstName = "Binay", Surname = "Subedi", Address = "Ktm", Salary = 100.0 };
-        var employee6 = new Employee { FirstName = "Sabita", Surname = "Sitaula", Address = "Jhapa", Salary = 15000.0 };
+           //Object initializer syntax
+        Person empl1 = new Person()
+        {
+            FirstName= "Sekhar",
+            Surname= "Khanal",
+            Address = "Sankhamul",
+            Salary= 10000.0
 
-        var employees = new List<Employee> { employee1, employee2, employee3, employee4, employee5, employee6 };
-        return employees;     
+        };
+        Person empl2 = new Person{FirstName= "Rachan",Surname= "Nepal",Address = "Ktm",Salary= 15000};
+        Person empl3 = new Person{FirstName= "Raman",Surname= "Shiwakoti",Address = "Koteshwor",Salary= 25000};
+        Person empl4 = new Person{FirstName= "Nischal",Surname= "Karki",Address = "bhaktapur",Salary= 5000};
+        Person empl5 = new Person{FirstName= "Sagar",Surname= "Neupane",Address = "Jumla",Salary= 35000};
+        Person empl6 = new Person{FirstName= "Raj",Surname= "Tiwari",Address = "KOteshwor",Salary= 20000};
+
+        return new List<Person>() {empl1, empl2,empl3,empl4,empl5,empl6};
     }
+
+
 }

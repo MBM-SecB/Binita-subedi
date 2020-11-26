@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
@@ -5,17 +6,26 @@ public class EmployeeController : Controller
 {
     public ActionResult Index()
     {
-        var employees = Employee.GetEmployees();        
+        List<Person> employees = Person.GetPerson();
         return View(employees);
     }
-
     public ActionResult Detail(string firstName)
     {
-        var employees = Employee.GetEmployees();
-        var employee = employees.FirstOrDefault(x => x.FirstName == firstName);
-        
+        List<Person> employees =Person.GetPerson();
+        var employee = employees.Where(x =>x.FirstName == firstName).First();
         return View(employee);
+        
+        
+    }
+    public ActionResult Add()
+    {
+        return View();
+    }
+    [HttpPost]
+    public ActionResult<bool> Add(Person person)
+    {
+        return true;
+
+
     }
 }
-
-
