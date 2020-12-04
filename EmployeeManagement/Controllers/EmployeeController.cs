@@ -1,31 +1,65 @@
-using System.Collections.Generic;
 using System.Linq;
+using EmployeeManagement.Data;
 using Microsoft.AspNetCore.Mvc;
 
 public class EmployeeController : Controller
 {
-    public ActionResult Index()
-    {
-        List<Person> employees = Person.GetPerson();
-        return View(employees);
-    }
-    public ActionResult Detail(string firstName)
-    {
-        List<Person> employees =Person.GetPerson();
-        var employee = employees.Where(x =>x.FirstName == firstName).First();
-        return View(employee);
-        
-        
-    }
-    public ActionResult Add()
-    {
-        return View();
-    }
-    [HttpPost]
-    public ActionResult<bool> Add(Person person)
-    {
-        return true;
+  private EMSContext db;
 
+  public EmployeeController(EMSContext _db)
+  {
+    db = _db;
+  }
 
-    }
+  public ActionResult Index()
+  {
+    var employees = db.Employees.ToList();
+    return View(employees);
+  }
+
+  public ActionResult Detail(int id)
+  {
+    var employee = db.Employees.Find(id);
+    return View(employee);
+  }
+
+  public ActionResult Add()
+  {
+    return View();
+  }
+
+  [HttpPost]
+  public ActionResult Add(Employee employee)  // Model binding
+  {
+    db.Employees.Add(employee);
+    db.SaveChanges();
+
+    return RedirectToAction(nameof(Index));
+  }
+
+  public ActionResult Edit(int id)
+  {
+    var employee = db.Employees.Find(id);
+    return View(employee);
+  }
+
+  [HttpPost]
+  public ActionResult Edit(Employee employee)
+  {
+    db.Employees.Attach(employee);
+    db.Employees.Update(employee);
+    db.SaveChanges();
+
+    return RedirectToAction(nameof(Index));
+  }
+
+  [HttpPost]
+  public ActionResult Delete(int id)
+  {
+    var employee = db.Employees.Find(id);
+    db.Employees.Remove(employee);
+    db.SaveChanges();
+
+    return RedirectToAction(nameof(Index));
+  }
 }
